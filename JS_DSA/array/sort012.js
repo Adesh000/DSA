@@ -32,3 +32,33 @@ const ascendingOrder = (arr) => {
 };
 
 ascendingOrder([0, 1, 1, 2, 0, 1, 0, 2, 2, 1, 2, 0]);
+
+// Three way partitioning
+const threeWayPartitioning = (arr) => {
+  let low = 0,
+    mid = 0,
+    high = arr.length - 1;
+
+  while (mid <= high) {
+    if (arr[mid] === 0) {
+      let temp = arr[mid];
+      arr[mid] = arr[low];
+      arr[low] = temp;
+      low += 1;
+      mid += 1;
+    }
+    if (arr[mid] === 1) {
+      mid += 1;
+    }
+    if (arr[mid] === 2) {
+      let temp = arr[high];
+      arr[high] = arr[mid];
+      arr[mid] = temp;
+      high -= 1;
+    }
+  }
+
+  console.log("Three pointer sorting: ", arr);
+};
+
+threeWayPartitioning([0, 1, 1, 2, 0, 1, 0, 2, 2, 1, 2, 0]);
